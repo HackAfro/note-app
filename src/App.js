@@ -1,31 +1,27 @@
-import React, { useState, useEffect } from "react";
-import gql from "graphql-tag";
-import { graphql } from "react-apollo";
-import { HalfCircleSpinner } from "react-epic-spinners";
+import React, { useState, useEffect } from 'react';
+import { HalfCircleSpinner } from 'react-epic-spinners';
 
-import Header from "./components/header";
-import NoteForm from "./components/note-form";
-import NoteList from "./components/note-list";
+// TODO -- 1. Import gql and graphql functions.
 
-import "./App.css";
+import Header from './components/header';
+import NoteForm from './components/note-form';
+import NoteList from './components/note-list';
+
+import './App.css';
 
 function App({ loading, notes }) {
   const [stateNotes, setNotes] = useState([]);
 
+  // Here we set the notes returned from the query to state. 
   useEffect(() => {
     setNotes(notes);
   }, [notes]);
 
-  const addNewNote = note => {
-    if (note.title && note.text) {
-      setNotes([...stateNotes, note]);
-    }
-  };
+  // TODO -- 4. Add a new note to the local state after graphql mutation is complete
+  const addNewNote = (note) => {};
 
-  const removeNote = id => {
-    const filteredNotes = notes.filter(note => note.id !== id);
-    setNotes(filteredNotes);
-  };
+  // TODO -- 5. Remove a single note from the local state
+  const removeNote = (id) => {};
 
   return (
     <main className="App">
@@ -54,30 +50,8 @@ function App({ loading, notes }) {
   );
 }
 
-const NOTE_LIST_QUERY = gql`
-  query {
-    notesList {
-      items {
-        id
-        title
-        text
-      }
-    }
-  }
-`;
+// TODO -- 2. Write query to get notes from 8base
+const NOTE_LIST_QUERY = '';
 
-export default graphql(NOTE_LIST_QUERY, {
-  props: result => {
-    const {
-      data,
-      data: { loading }
-    } = result;
-    let notes = [];
-    if (data && data.notesList) notes = data.notesList.items;
-    console.log(data);
-    return {
-      loading,
-      notes
-    };
-  }
-})(App);
+// TODO -- 3. Use graphql HOC to attach query to the App component.
+export default App;
