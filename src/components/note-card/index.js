@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
 import DeleteButton from './delete-button';
-import "./note.css";
+import './note.css';
 
-const NoteCard = ({ note }) => (
+const NoteCard = ({ note, refetch }) => (
   <div className="note-card">
     <div className="card text-white bg-card mb-3">
       <div className="card-header">
-        <DeleteButton noteId={note.id}/>
+        <DeleteButton noteId={note.id} refetch={refetch} />
       </div>
       <div className="card-body">
         <h4 className="card-title note-title">{note.title}</h4>
