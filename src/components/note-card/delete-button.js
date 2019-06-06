@@ -7,7 +7,7 @@ import Trash from "react-feather/dist/icons/trash";
  *  */ 
 
 
-const DeleteButton = ({ noteId, deleteNote }) => {
+const DeleteButton = ({ noteId, deleteNote, refetch }) => {
 
   
 /**
