@@ -4,7 +4,7 @@ import { graphql } from "react-apollo";
 
 import "./form.css";
 
-const NoteForm = ({ saveNewNote, noteCreate }) => {
+const NoteForm = ({ refetch, noteCreate }) => {
   const [step, setStep] = useState(1);
   const [note, setNote] = useState({
     title: "",
@@ -54,8 +54,8 @@ const NoteForm = ({ saveNewNote, noteCreate }) => {
     const res = await noteCreate({ variables: { data: note } });
     console.log(res);
     if (res.data.noteCreate.id) {
-      saveNewNote(note);
       setNote({ title: "", text: "" });
+      refetch()
     }
   };
 
