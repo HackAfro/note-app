@@ -8,10 +8,10 @@ const styles = {
   flexWrap: "wrap"
 };
 
-const NoteList = ({ notes = [] }) => (
+const NoteList = ({ notes = [], refetch }) => (
   <div className="note-list" style={styles}>
     {notes.map(note => (
-      <NoteCard key={note.id} note={note} />
+      <NoteCard key={note.id} note={note} refetch={refetch} />
     ))}
   </div>
 );
