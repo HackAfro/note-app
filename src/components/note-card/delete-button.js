@@ -4,14 +4,14 @@ import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 
 const DeleteButton = ({ noteId, deleteNote }) => {
+
+  
+/**
+ * TODO
+ * Show a confirm dialog before attempting to delete the note
+ *  */ 
   const onDeleteClick = () => {
-    const data = {
-      id: noteId
-    };
-    const remove = window.confirm("Are you sure you want to delete this note?");
-    if (remove) {
-      deleteNote({ variables: { data } });
-    }
+    
   };
   return (
     <button onClick={onDeleteClick}>
@@ -20,14 +20,17 @@ const DeleteButton = ({ noteId, deleteNote }) => {
   );
 };
 
-const DELETE_MUTATION = gql`
-  mutation DeleteNote($data: NoteDeleteInput!) {
-    noteDelete(data: $data) {
-      success
-    }
-  }
-`;
+ 
+/**
+ * TODO
+ * Write delete Mutation to delete note
+ *  */ 
+const DELETE_MUTATION = ``;
 
-export default graphql(DELETE_MUTATION, {
-  name: "deleteNote"
-})(DeleteButton);
+
+ 
+/**
+ * TODO
+ * Setup graphql function enable the component run the delete mutation
+ *  */ 
+export default DeleteButton;
