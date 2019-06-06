@@ -1,14 +1,18 @@
 import React from "react";
 import Trash from "react-feather/dist/icons/trash";
-import gql from "graphql-tag";
-import { graphql } from "react-apollo";
+
+/**
+ * TODO
+ * 1. Add gql and graphql imports
+ *  */ 
+
 
 const DeleteButton = ({ noteId, deleteNote }) => {
 
   
 /**
  * TODO
- * Show a confirm dialog before attempting to delete the note
+ * 4. Show a confirm dialog before attempting to delete the note
  *  */ 
   const onDeleteClick = () => {
     
@@ -23,7 +27,7 @@ const DeleteButton = ({ noteId, deleteNote }) => {
  
 /**
  * TODO
- * Write delete Mutation to delete note
+ * 2. Write delete Mutation to delete note
  *  */ 
 const DELETE_MUTATION = ``;
 
@@ -31,6 +35,6 @@ const DELETE_MUTATION = ``;
  
 /**
  * TODO
- * Setup graphql function enable the component run the delete mutation
+ * 3. Setup graphql function enable the component run the delete mutation
  *  */ 
 export default DeleteButton;
