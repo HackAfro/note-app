@@ -1,28 +1,31 @@
-import React, { useState } from "react";
-import gql from "graphql-tag";
-import { graphql } from "react-apollo";
+import React, { useState } from 'react';
 
-import "./form.css";
+/**
+ * TODO
+ * 1. Make use of gql and graphql functions to setup the component
+ *  */
+
+import './form.css';
 
 const NoteForm = ({ saveNewNote, noteCreate }) => {
   const [step, setStep] = useState(1);
   const [note, setNote] = useState({
-    title: "",
-    text: ""
+    title: '',
+    text: '',
   });
 
-  const onInputChange = e => {
+  const onInputChange = (e) => {
     e.preventDefault();
     const {
-      target: { name, value }
+      target: { name, value },
     } = e;
     setNote({
       ...note,
-      [name]: value
+      [name]: value,
     });
   };
 
-  const isStepComplete = step => {
+  const isStepComplete = (step) => {
     switch (step) {
       case 1:
         return !!note.title;
@@ -34,7 +37,7 @@ const NoteForm = ({ saveNewNote, noteCreate }) => {
     }
   };
 
-  const completeStep = e => {
+  const completeStep = (e) => {
     e.preventDefault();
     if (step === 1) {
       const stepComplete = isStepComplete(step);
@@ -50,14 +53,11 @@ const NoteForm = ({ saveNewNote, noteCreate }) => {
     }
   };
 
-  const submit = async note => {
-    const res = await noteCreate({ variables: { data: note } });
-    console.log(res);
-    if (res.data.noteCreate.id) {
-      saveNewNote(note);
-      setNote({ title: "", text: "" });
-    }
-  };
+  /**
+   * TODO
+   * 1.  Send request to create the note on 8base
+   *  */
+  const submit = async (note) => {};
 
   return (
     <form className="note-form" onSubmit={completeStep}>
@@ -104,14 +104,17 @@ const NoteForm = ({ saveNewNote, noteCreate }) => {
   );
 };
 
-const NOTE_MUTATION = gql`
-  mutation NoteCreate($data: NoteCreateInput!) {
-    noteCreate(data: $data) {
-      id
-    }
-  }
-`;
+/**
+ * TODO
+ * Write mutation to create a note on 8base
+ *  */
 
+const NOTE_MUTATION = '';
+
+/**
+ * TODO
+ * Wrap the function
+ *  */
 export default graphql(NOTE_MUTATION, {
-  name: "noteCreate"
+  name: 'noteCreate',
 })(NoteForm);
