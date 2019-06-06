@@ -1,38 +1,27 @@
-import React, { useState, useEffect } from "react";
-import gql from "graphql-tag";
-import { graphql } from "react-apollo";
-import { HalfCircleSpinner } from "react-epic-spinners";
+import React, { useState, useEffect } from 'react';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
+import { HalfCircleSpinner } from 'react-epic-spinners';
 
-import Header from "./components/header";
-import NoteForm from "./components/note-form";
-import NoteList from "./components/note-list";
+import Header from './components/header';
+import NoteForm from './components/note-form';
+import NoteList from './components/note-list';
 
-import "./App.css";
+import './App.css';
 
-function App({ loading, notes }) {
+function App({ loading = false, notes, refetch }) {
   const [stateNotes, setNotes] = useState([]);
 
   useEffect(() => {
     setNotes(notes);
   }, [notes]);
 
-  const addNewNote = note => {
-    if (note.title && note.text) {
-      setNotes([...stateNotes, note]);
-    }
-  };
-
-  const removeNote = id => {
-    const filteredNotes = notes.filter(note => note.id !== id);
-    setNotes(filteredNotes);
-  };
-
   return (
     <main className="App">
       <Header />
       <div className="container">
         <div>
-          <NoteForm saveNewNote={addNewNote} />
+          <NoteForm refetch={refetch} />
         </div>
         <div className="" id="notes-box">
           <div className="text-center">
@@ -43,7 +32,7 @@ function App({ loading, notes }) {
                 </div>
               ) : (
                 <div>
-                  <NoteList notes={stateNotes} />
+                  <NoteList notes={stateNotes} refetch={refetch} />
                 </div>
               )}
             </div>
@@ -67,17 +56,16 @@ const NOTE_LIST_QUERY = gql`
 `;
 
 export default graphql(NOTE_LIST_QUERY, {
-  props: result => {
-    const {
-      data,
-      data: { loading }
-    } = result;
+  props: (result) => {
+    const { data } = result;
+    const { loading, refetch } = data;
     let notes = [];
     if (data && data.notesList) notes = data.notesList.items;
     console.log(data);
     return {
       loading,
-      notes
+      notes,
+      refetch,
     };
-  }
+  },
 })(App);
