@@ -1,22 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { ApolloProvider } from "react-apollo";
-import ApolloClient from "apollo-boost";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import "./index.css";
-import App from "./App";
-import * as serviceWorker from "./serviceWorker";
+// TODO -- 1. Import Apollo client and provider
 
-const client = new ApolloClient({
-  uri: "<REPLACE_WITH_ENDPOINT_URL>"
-});
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>,
-  document.getElementById("root")
-);
+// TODO -- 2. Setup Apollo Client
+
+// TODO -- 3 Render the Apollo Provider with the client
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
