@@ -52,7 +52,6 @@ const NoteForm = ({ refetch, noteCreate }) => {
 
   const submit = async note => {
     const res = await noteCreate({ variables: { data: note } });
-    console.log(res);
     if (res.data.noteCreate.id) {
       setNote({ title: "", text: "" });
       refetch()
