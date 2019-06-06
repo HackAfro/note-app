@@ -55,7 +55,7 @@ const NoteForm = ({ saveNewNote, noteCreate }) => {
 
   /**
    * TODO
-   * 1.  Send request to create the note on 8base
+   * 4.  Send request to create the note on 8base
    *  */
   const submit = async (note) => {};
 
@@ -106,15 +106,13 @@ const NoteForm = ({ saveNewNote, noteCreate }) => {
 
 /**
  * TODO
- * Write mutation to create a note on 8base
+ * 2. Write mutation to create a note on 8base
  *  */
 
 const NOTE_MUTATION = '';
 
 /**
  * TODO
- * Wrap the function
+ * 3. Wrap the function with the graphql function
  *  */
-export default graphql(NOTE_MUTATION, {
-  name: 'noteCreate',
-})(NoteForm);
+export default NoteForm;
