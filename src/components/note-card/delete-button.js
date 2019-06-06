@@ -1,16 +1,17 @@
-import React from "react";
-import Trash from "react-feather/dist/icons/trash";
-import gql from "graphql-tag";
-import { graphql } from "react-apollo";
+import React from 'react';
+import Trash from 'react-feather/dist/icons/trash';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 
-const DeleteButton = ({ noteId, deleteNote }) => {
-  const onDeleteClick = () => {
+const DeleteButton = ({ noteId, deleteNote, refetch }) => {
+  const onDeleteClick = async () => {
     const data = {
-      id: noteId
+      id: noteId,
     };
-    const remove = window.confirm("Are you sure you want to delete this note?");
+    const remove = window.confirm('Are you sure you want to delete this note?');
     if (remove) {
-      deleteNote({ variables: { data } });
+      await deleteNote({ variables: { data } });
+      refetch();
     }
   };
   return (
@@ -29,5 +30,5 @@ const DELETE_MUTATION = gql`
 `;
 
 export default graphql(DELETE_MUTATION, {
-  name: "deleteNote"
+  name: 'deleteNote',
 })(DeleteButton);
