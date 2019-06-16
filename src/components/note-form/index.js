@@ -1,28 +1,28 @@
-import React, { useState } from "react";
-import gql from "graphql-tag";
-import { graphql } from "react-apollo";
+import React, { useState } from 'react';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 
-import "./form.css";
+import './form.css';
 
 const NoteForm = ({ refetch, noteCreate }) => {
   const [step, setStep] = useState(1);
   const [note, setNote] = useState({
-    title: "",
-    text: ""
+    title: '',
+    text: '',
   });
 
-  const onInputChange = e => {
+  const onInputChange = (e) => {
     e.preventDefault();
     const {
-      target: { name, value }
+      target: { name, value },
     } = e;
     setNote({
       ...note,
-      [name]: value
+      [name]: value,
     });
   };
 
-  const isStepComplete = step => {
+  const isStepComplete = (step) => {
     switch (step) {
       case 1:
         return !!note.title;
@@ -34,7 +34,7 @@ const NoteForm = ({ refetch, noteCreate }) => {
     }
   };
 
-  const completeStep = e => {
+  const completeStep = (e) => {
     e.preventDefault();
     if (step === 1) {
       const stepComplete = isStepComplete(step);
@@ -50,11 +50,12 @@ const NoteForm = ({ refetch, noteCreate }) => {
     }
   };
 
-  const submit = async note => {
+  const submit = async (note) => {
     const res = await noteCreate({ variables: { data: note } });
     if (res.data.noteCreate.id) {
-      setNote({ title: "", text: "" });
-      refetch()
+      setNote({ title: '', text: '' });
+      setStep(1);
+      refetch();
     }
   };
 
@@ -112,5 +113,5 @@ const NOTE_MUTATION = gql`
 `;
 
 export default graphql(NOTE_MUTATION, {
-  name: "noteCreate"
+  name: 'noteCreate',
 })(NoteForm);
